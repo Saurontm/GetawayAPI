@@ -1,7 +1,12 @@
 const express = require("express");
 const db = require("./db/models");
+const users = require("./users");
 
 const app = express();
+
+app.get("/users", (req, res) => {
+  res.json(users);
+});
 
 const run = async () => {
   try {
