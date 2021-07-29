@@ -40,7 +40,6 @@ app.use((req, res, next) => {
   res.status(404).json({ message: "Path not found." });
 });
 
-
 //app.get("/users", (req, res) => {
 //  res.json(users);
 //});
@@ -50,7 +49,6 @@ const run = async () => {
     await db.sequelize.sync({ alter: true });
     console.log("Connection to the database successful!");
     app.listen(8000, () => {
-
       console.log("The application is running on localhost:8000");
     });
   } catch (error) {
