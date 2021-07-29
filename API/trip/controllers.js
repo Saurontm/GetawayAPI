@@ -2,7 +2,7 @@ const { Trip, User } = require("../../db/models");
 
 exports.fetchTrip = async (tripId, next) => {
   try {
-    const foundTrip = await Product.findByPk(tripId);
+    const foundTrip = await Trip.findByPk(tripId);
     return foundTrip;
   } catch (error) {
     next(error);
@@ -22,6 +22,7 @@ exports.tripsFetch = async (req, res, next) => {
   }
 };
 
+
 exports.createTrip = async (req, res, next) => {
   try {
     req.body.userId = req.user.id;
@@ -30,6 +31,16 @@ exports.createTrip = async (req, res, next) => {
     const newTrip = await Trip.create(req.body);
 
     res.status(201).json(newTrip);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+exports.deleteTrip = async (req, res, next) => {
+  try {
+    await req.trip.destroy();
+    res.status(204).end(); // NO Content
   } catch (error) {
     next(error);
   }
