@@ -2,7 +2,7 @@ const { Trip } = require("../../db/models");
 
 exports.fetchTrip = async (tripId, next) => {
   try {
-    const foundTrip = await Product.findByPk(tripId);
+    const foundTrip = await Trip.findByPk(tripId);
     return foundTrip;
   } catch (error) {
     next(error);
