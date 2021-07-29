@@ -20,3 +20,12 @@ exports.tripsFetch = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.deleteTrip = async (req, res, next) => {
+  try {
+    await req.trip.destroy();
+    res.status(204).end(); // NO Content
+  } catch (error) {
+    next(error);
+  }
+};
