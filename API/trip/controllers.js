@@ -22,7 +22,6 @@ exports.tripsFetch = async (req, res, next) => {
   }
 };
 
-
 exports.createTrip = async (req, res, next) => {
   try {
     req.body.userId = req.user.id;
@@ -35,7 +34,6 @@ exports.createTrip = async (req, res, next) => {
     next(error);
   }
 };
-
 
 exports.deleteTrip = async (req, res, next) => {
   try {
