@@ -15,7 +15,6 @@ exports.tripsFetch = async (req, res, next) => {
       attributes: { exclude: ["createdAt", "updatedAt"] },
       include: { model: User, as: "user", attributes: ["username"] },
     });
-
     res.json(trips);
   } catch (error) {
     next(error);
@@ -53,7 +52,8 @@ exports.deleteTrip = async (req, res, next) => {
 exports.updateTrip = async (req, res, next) => {
   try {
     if (req.trip.userId === req.user.id) {
-      if (req.file) req.body.image = `http://${req.get("host")}/${req.file.path}`;
+      if (req.file)
+        req.body.image = `http://${req.get("host")}/${req.file.path}`;
       const updatedTrip = await req.trip.update(req.body);
       res.json(updatedTrip);
     } else {
@@ -65,4 +65,3 @@ exports.updateTrip = async (req, res, next) => {
     next(error);
   }
 };
-

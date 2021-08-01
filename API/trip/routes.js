@@ -11,6 +11,7 @@ const {
 const multer = require("multer");
 const router = express.Router();
 
+// don't you think you can clean up you routes by moving the (multer) to the middleware folder?
 const storage = multer.diskStorage({
   destination: "./media",
   filename: (req, file, cb) => {
@@ -42,9 +43,11 @@ router.post(
 );
 
 /// Delete Route
-router.delete("/:tripId",
+router.delete(
+  "/:tripId",
   passport.authenticate("jwt", { session: false }),
-  deleteTrip);
+  deleteTrip
+);
 
 // Update Route
 router.put(
