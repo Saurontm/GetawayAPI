@@ -49,3 +49,20 @@ exports.deleteTrip = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.updateTrip = async (req, res, next) => {
+  try {
+    if (req.trip.userId === req.user.id) {
+      if (req.file) req.body.image = `http://${req.get("host")}/${req.file.path}`;
+      const updatedTrip = await req.trip.update(req.body);
+      res.json(updatedTrip);
+    } else {
+      const err = new Error("Unauthorized!");
+      err.status = 401;
+      return next(err);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
