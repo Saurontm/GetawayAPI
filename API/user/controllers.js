@@ -1,13 +1,3 @@
-/*exports.signup = async (req, res, next) => {
-    try {
-        console.log("Signup");
-    } catch (error) {
-        next(error);
-    }
-};
-*/
-// remove the all comments please
-
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User } = require("../../db/models");
@@ -31,11 +21,7 @@ exports.signup = async (req, res, next) => {
     next(error);
   }
 };
-/*
-exports.signin = async (req, res, next) => {
-    res.json(req);
-};
-*/
+
 exports.signin = async (req, res, next) => {
   const { user } = req;
   const payload = {

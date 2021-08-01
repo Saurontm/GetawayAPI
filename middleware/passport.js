@@ -1,5 +1,4 @@
 const LocalStrategy = require("passport-local").Strategy;
-//const bycrpt = require("bycrpt");👈🏻remove this comment
 const JWTStrategy = require("passport-jwt").Strategy;
 const { fromAuthHeaderAsBearerToken } = require("passport-jwt").ExtractJwt;
 
