@@ -4,6 +4,7 @@ const {
   tripsFetch,
   fetchTrip,
   deleteTrip,
+  updateTrip,
   createTrip,
 } = require("./controllers");
 
@@ -45,5 +46,12 @@ router.delete("/:tripId",
   passport.authenticate("jwt", { session: false }),
   deleteTrip);
 
+// Update Route
+router.put(
+  "/:tripId",
+  passport.authenticate("jwt", { session: false }),
+  upload.single("image"),
+  updateTrip
+);
 
 module.exports = router;
