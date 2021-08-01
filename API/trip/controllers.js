@@ -37,8 +37,14 @@ exports.createTrip = async (req, res, next) => {
 
 exports.deleteTrip = async (req, res, next) => {
   try {
-    await req.trip.destroy();
-    res.status(204).end(); // NO Content
+    if (req.trip.userId === req.user.id) {
+      await req.trip.destroy();
+      res.status(204).end(); // NO Content
+    } else {
+      const err = new Error("Unauthorized!");
+      err.status = 401;
+      return next(err);
+    }
   } catch (error) {
     next(error);
   }

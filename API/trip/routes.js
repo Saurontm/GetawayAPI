@@ -41,6 +41,8 @@ router.post(
 );
 
 // Delete Route
-router.delete("/:tripId", deleteTrip);
+router.delete("/:tripId",
+  passport.authenticate("jwt", { session: false }),
+  deleteTrip);
 
 module.exports = router;
