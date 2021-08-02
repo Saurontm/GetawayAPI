@@ -23,7 +23,7 @@ passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 //=============== Getaway Routes ===============\\
-app.use("/profile", profileRoutes);
+app.use("/profiles", profileRoutes);
 app.use(userRoutes);
 app.use("/media", express.static("media"));
 app.use("/trips", tripRoutes);

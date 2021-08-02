@@ -1,8 +1,8 @@
 const { Profile } = require("../../db/models");
 
-exports.fetchProfile = async (userId, next) => {
+exports.fetchProfile = async (profileId, next) => {
   try {
-    const profile = await Profile.findByPk(userId);
+    const profile = await Profile.findByPk(profileId);
     return profile;
   } catch (error) {
     next(error);
@@ -37,8 +37,10 @@ exports.updateProfile = async (req, res, next) => {
 
 exports.profileFetch = async (req, res, next) => {
   try {
-    const profile = req.profile;
-    res.json(profile);
+    const profiles = await Profile.findAll({
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+    });
+    res.json(profiles);
   } catch (error) {
     next(error);
   }
