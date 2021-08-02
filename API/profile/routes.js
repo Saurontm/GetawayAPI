@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage });
-
+/*
 // param middleware (parameter)
 router.param("profileId", async (req, res, next, profileId) => {
   // get the profile with id profileId
@@ -29,9 +29,27 @@ router.param("profileId", async (req, res, next, profileId) => {
     next(error);
   }
 });
+*/
+
+// param middleware (parameter)
+router.param("userId", async (req, res, next, userId) => {
+  // get the profile with id userId
+  const profile = await fetchProfile(userId, next);
+  if (profile) {
+    // store it in req
+    req.profile = profile;
+    next();
+  } else {
+    // give back response 404 Profile Not Found
+    const error = new Error("Profile Not Found.");
+    error.status = 404;
+    next(error);
+  }
+});
+
 
 // List Route
-router.get("/", profileFetch);
+router.get("/:userId", profileFetch);
 
 // Update Route
 router.put(
