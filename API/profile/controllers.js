@@ -9,6 +9,24 @@ exports.fetchProfile = async (profileId, next) => {
   }
 };
 
+exports.updateProfile = async (req, res, next) => {
+  try {
+    if (req.profile.userId === req.user.id) {
+      if (req.file)
+        req.body.image = `http://${req.get("host")}/${req.file.path}`;
+      const updatedProfile = await req.profile.update(req.body);
+      res.json(updatedProfile);
+    } else {
+      const err = new Error("Unauthorized!");
+      err.status = 401;
+      return next(err);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+//do we need?
 exports.profileFetch = async (req, res, next) => {
   try {
     const profiles = await Profile.findAll({
