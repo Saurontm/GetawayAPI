@@ -2,7 +2,12 @@ const express = require("express");
 const multer = require("multer");
 const passport = require("passport");
 
-const { profileFetch, fetchProfile, updateProfile } = require("./controllers");
+const {
+  profileFetch,
+  fetchProfile,
+  updateProfile,
+  fetchUserProfile,
+} = require("./controllers");
 const router = express.Router();
 
 //multer
@@ -32,6 +37,9 @@ router.param("profileId", async (req, res, next, profileId) => {
 
 // List Route
 router.get("/", profileFetch);
+
+//fetch profile
+router.get("/:profileId", fetchUserProfile);
 
 // Update Route
 router.put(
