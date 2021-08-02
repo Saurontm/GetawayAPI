@@ -9,6 +9,15 @@ exports.fetchProfile = async (userId, next) => {
   }
 };
 
+exports.fetchUserProfile = async (req, res, next) => {
+  try {
+    const profile = await Profile.findByPk(req.profile.id);
+    res.json(profile);
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.updateProfile = async (req, res, next) => {
   try {
     if (req.profile.userId === req.user.id) {

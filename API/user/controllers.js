@@ -12,7 +12,7 @@ exports.signup = async (req, res, next) => {
     const newUser = await User.create(req.body);
     req.body.userId = newUser.id;
     const newProfile = await Profile.create(req.body);
-    
+
     const payload = {
       id: newUser.id,
       username: newUser.username,
