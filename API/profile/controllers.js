@@ -35,7 +35,6 @@ exports.updateProfile = async (req, res, next) => {
   }
 };
 
-//do we need?
 exports.profileFetch = async (req, res, next) => {
   try {
     const profiles = await Profile.findAll({
