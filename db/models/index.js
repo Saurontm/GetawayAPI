@@ -44,6 +44,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 //relationships
+//user and profile (one to one)
 db.User.hasOne(db.Profile, {
   as: "profile",
   foreignKey: "userId",
