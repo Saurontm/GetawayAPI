@@ -27,6 +27,7 @@ exports.updateProfile = async (req, res, next) => {
 };
 
 //do we need? //i figured out yesterday we might NOT need it
+//but i will use it now for BE testing 
 exports.profileFetch = async (req, res, next) => {
   try {
     const profiles = await Profile.findAll({
