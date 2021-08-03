@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     title: { type: DataTypes.STRING },
     image: { type: DataTypes.STRING },
     description: { type: DataTypes.STRING },
+    favorite: {
+      type: DataTypes.BOOLEAN,
+    },
   });
   return Trip;
 };

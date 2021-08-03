@@ -24,6 +24,7 @@ exports.tripsFetch = async (req, res, next) => {
 exports.createTrip = async (req, res, next) => {
   try {
     req.body.userId = req.user.id;
+    req.body.favorite = false;
     if (req.file) req.body.image = `http://${req.get("host")}/${req.file.path}`;
 
     const newTrip = await Trip.create(req.body);
@@ -54,6 +55,22 @@ exports.updateTrip = async (req, res, next) => {
     if (req.trip.userId === req.user.id) {
       if (req.file)
         req.body.image = `http://${req.get("host")}/${req.file.path}`;
+      const updatedTrip = await req.trip.update(req.body);
+      res.json(updatedTrip);
+    } else {
+      const err = new Error("Unauthorized!");
+      err.status = 401;
+      return next(err);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.favoriteTrip = async (req, res, next) => {
+  try {
+    if (req.trip.userId === req.user.id) {
+      req.body.favorite = !req.trip.favorite;
       const updatedTrip = await req.trip.update(req.body);
       res.json(updatedTrip);
     } else {

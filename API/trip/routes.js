@@ -6,6 +6,7 @@ const {
   deleteTrip,
   updateTrip,
   createTrip,
+  favoriteTrip,
 } = require("./controllers");
 
 const multer = require("multer");
@@ -55,6 +56,13 @@ router.put(
   passport.authenticate("jwt", { session: false }),
   upload.single("image"),
   updateTrip
+);
+
+//update favorite status
+router.put(
+  "/fav/:tripId",
+  passport.authenticate("jwt", { session: false }),
+  favoriteTrip
 );
 
 module.exports = router;
