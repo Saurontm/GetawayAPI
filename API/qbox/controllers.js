@@ -1,4 +1,4 @@
-const { Trip, User } = require("../../db/models");
+const { QBox } = require("../../db/models");
 
 exports.fetchQbox = async (tripId, next) => {
     try {
@@ -9,7 +9,7 @@ exports.fetchQbox = async (tripId, next) => {
     }
 };
 
-exports.QboxFetch = async (req, res, next) => {
+exports.qboxFetch = async (req, res, next) => {
     try {
         const qboxes = await QBox.findAll({
             attributes: { exclude: ["createdAt", "updatedAt"] },
@@ -31,3 +31,18 @@ exports.createQbox = async (req, res, next) => {
 };
 
 
+exports.updateQbox = async (req, res, next) => {
+    try {
+        // if (req.trip.userId === req.user.id) {
+        const updatedQbox = await req.qbox.update(req.body);
+        console.log("hello");
+        res.json(updatedQbox);
+        //  } else {
+        // const err = new Error("Unauthorized!");
+        //  err.status = 401;
+        //  return next(err);
+        //}
+    } catch (error) {
+        next(error);
+    }
+};
