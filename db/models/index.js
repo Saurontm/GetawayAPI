@@ -64,4 +64,16 @@ db.Trip.belongsTo(db.User, {
   as: "user",
 });
 
+//trips and qbox (one to many)
+db.Trip.hasMany(db.QBox, {
+  foreignKey: "tripId",
+  allowNull: false,
+  as: "qbox",
+});
+
+db.QBox.belongsTo(db.Trip, {
+  foreignKey: "tripId",
+  as: "trip",
+});
+
 module.exports = db;
