@@ -17,7 +17,7 @@ exports.signup = async (req, res, next) => {
       id: newUser.id,
       username: newUser.username,
       exp: Date.now() + JWT_EXPIRATION_MS,
-      profile: newProfile.id,
+      profile: newProfile,
     };
     const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
 
@@ -37,7 +37,7 @@ exports.signin = async (req, res, next) => {
     id: user.id,
     username: user.username,
     exp: Date.now() + JWT_EXPIRATION_MS,
-    profile: userProfile.id,
+    profile: userProfile,
   };
   const token = jwt.sign(JSON.stringify(payload), JWT_SECRET);
   res.json({ token });
