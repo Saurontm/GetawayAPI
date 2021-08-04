@@ -8,6 +8,12 @@ module.exports = (sequelize, DataTypes) => {
     favorite: {
       type: DataTypes.BOOLEAN,
     },
+    locationTitle: {
+      type: DataTypes.STRING,
+    },
+    place_id: {
+      type: DataTypes.STRING,
+    },
   });
   return Trip;
 };
