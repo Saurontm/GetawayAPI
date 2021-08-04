@@ -20,7 +20,7 @@ exports.localStrategy = new LocalStrategy(async (username, password, done) => {
       return done(null, user);
     }
     return done(null, false);
-  } catch {
+  } catch (error) {
     done(error);
   }
 });

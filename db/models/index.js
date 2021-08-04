@@ -63,5 +63,14 @@ db.Trip.belongsTo(db.User, {
   foreignKey: "userId",
   as: "user",
 });
-
+db.User.hasOne(db.WishList, { foreignKey: "userId", as: "wishList" });
+db.WishList.belongsTo(db.User, { as: "user" });
+db.WishList.belongsToMany(db.Trip, {
+  foreignKey: "wishListId",
+  through: db.WishListTrip,
+});
+db.Trip.belongsToMany(db.WishList, {
+  foreignKey: "tripId",
+  through: db.WishListTrip,
+});
 module.exports = db;
