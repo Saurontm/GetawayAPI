@@ -11,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
     locationTitle: {
       type: DataTypes.STRING,
     },
-    place_id: {
+    locationLat: {
+      type: DataTypes.STRING,
+    },
+    locationLng: {
       type: DataTypes.STRING,
     },
   });
