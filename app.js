@@ -12,6 +12,16 @@ const passport = require("passport");
 const { localStrategy } = require("./middleware/passport");
 const { jwtStrategy } = require("./middleware/passport");
 
+/**
+ * GENERAL NOTES
+ *
+ * Someone isn't using Prettier.
+ *
+ * 1. Install Prettier extension
+ * 2. Go to Settings in VS Code, search for "format on save", make sure the box is ticked.
+ * 3. Save a file that isn't formatted, it should be auto-formatted. If not, ask for help.
+ */
+
 //DATEBASE
 const db = require("./db/models/index");
 const app = express();
