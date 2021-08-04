@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
         answer: {
             type: DataTypes.STRING,
         },
+        author: {
+            type: DataTypes.STRING,
+        },
         authorId: {
             type: DataTypes.INTEGER,
         },

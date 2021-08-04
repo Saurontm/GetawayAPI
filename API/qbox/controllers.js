@@ -1,8 +1,8 @@
-const { QBox } = require("../../db/models");
+const { QBox, Trip } = require("../../db/models");
 
 exports.fetchQbox = async (tripId, next) => {
     try {
-        const foundQbox = await QBox.findByPk(tripId);
+        const foundQbox = await Trip.findByPk(tripId);
         return foundQbox;
     } catch (error) {
         next(error);
@@ -23,6 +23,7 @@ exports.qboxFetch = async (req, res, next) => {
 exports.createQbox = async (req, res, next) => {
     try {
         req.body.tripId = req.trip.id;
+        req.body.author = req.user.username;
         req.body.authorId = req.user.id;
         const newQbox = await QBox.create(req.body);
         res.status(201).json(newQbox);
