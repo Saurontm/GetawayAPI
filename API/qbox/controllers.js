@@ -1,8 +1,17 @@
 const { QBox, Trip } = require("../../db/models");
 
-exports.fetchQbox = async (tripId, next) => {
+exports.fetchTrip = async (tripId, next) => {
     try {
-        const foundQbox = await Trip.findByPk(tripId);
+        const foundTrip = await Trip.findByPk(tripId);
+        return foundTrip;
+    } catch (error) {
+        next(error);
+    }
+};
+
+exports.fetchQbox = async (qboxId, next) => {
+    try {
+        const foundQbox = await QBox.findByPk(qboxId);
         return foundQbox;
     } catch (error) {
         next(error);
@@ -35,7 +44,7 @@ exports.createQbox = async (req, res, next) => {
 
 exports.updateQbox = async (req, res, next) => {
     try {
-        if (req.body.authorId === req.user.id) {
+        if (req.qbox.authorId !== req.user.id) {
             const updatedQbox = await req.qbox.update(req.body);
             res.json(updatedQbox);
         } else {
