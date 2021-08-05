@@ -6,7 +6,11 @@ const bodyParser = require("body-parser");
 const profileRoutes = require("./API/profile/routes");
 const userRoutes = require("./API/user/routes");
 const tripRoutes = require("./API/trip/routes");
+
+const wishListRoutes = require("./API/wishList/routes");
+
 const qboxRoutes = require("./API/qbox/routes");
+
 
 const passport = require("passport");
 const { localStrategy } = require("./middleware/passport");
@@ -26,6 +30,7 @@ passport.use(jwtStrategy);
 //=============== Getaway Routes ===============\\
 app.use("/profiles", profileRoutes);
 app.use(userRoutes);
+app.use(wishListRoutes);
 app.use("/media", express.static("media"));
 app.use("/trips", tripRoutes);
 app.use("/qbox", qboxRoutes);
